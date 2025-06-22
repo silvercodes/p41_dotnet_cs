@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_operators", "03_operator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_arrays", "04_arrays\04_arrays.csproj", "{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_methods", "05_methods\05_methods.csproj", "{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x64.Build.0 = Release|Any CPU
 		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x86.ActiveCfg = Release|Any CPU
 		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x86.Build.0 = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|x64.Build.0 = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Debug|x86.Build.0 = Debug|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|x64.ActiveCfg = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|x64.Build.0 = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|x86.ActiveCfg = Release|Any CPU
+		{BCEF15C0-30F6-46EB-A7B8-CF066BFA7B24}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
