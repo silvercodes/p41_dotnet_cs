@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "99_cpp_ex", "99_cpp_ex\99_c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_operators", "03_operators\03_operators.csproj", "{46031540-0E3D-4765-899B-448A23D821CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_arrays", "04_arrays\04_arrays.csproj", "{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{46031540-0E3D-4765-899B-448A23D821CE}.Release|x64.Build.0 = Release|Any CPU
 		{46031540-0E3D-4765-899B-448A23D821CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{46031540-0E3D-4765-899B-448A23D821CE}.Release|x86.Build.0 = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|x64.Build.0 = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Debug|x86.Build.0 = Debug|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x64.ActiveCfg = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x64.Build.0 = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4A85E55-DC2D-49FB-8EBE-DE4988C42560}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

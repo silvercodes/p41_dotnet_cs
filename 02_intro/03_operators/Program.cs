@@ -58,3 +58,25 @@
 //string role = age < 12 ? "guest" : "user";
 
 
+// ---- cycle       while   do/while    for     foreach
+
+//for (int i = 0, j = 8; i < 10; ++i)
+//    Console.WriteLine(i);
+
+//while(condition)
+//{
+
+//}
+
+//do
+//{
+
+//} whlie(condition)
+
+//string name = "Vasia";
+//foreach(char c in name)
+//{
+//    Console.WriteLine(c);
+//}
+
+

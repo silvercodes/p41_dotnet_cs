@@ -33,10 +33,11 @@ int main()
     /*std::string input;
     std::cin >> input;*/
 
-    int a = 4;
-    int b = 5;
-    std::cout << a + b;     // operator+(a, b)
+    //int a = 4;
+    //int b = 5;
+    //std::cout << a + b;     // operator+(a, b)
 
-    
-    
+    int arr[3]{ 4, 6, 7 };
+    for (int item : arr)
+        std::cout << item << '\n';
 }
