@@ -45,55 +45,74 @@
 
 
 
-static void modify1(int val)
+// static void modify1(int val)
+// {
+// 	val = val * 2;
+// }
+
+// static void modify2(int& val)
+// {
+// 	val = val * 2;
+// }
+
+// static void modify3(int* val)
+// {
+// 	*val = *val * 2;
+// }
+// static void modify4(int*& val)
+// {
+// 	*val = *val * 2;
+// }
+// static void modify5(int** val)
+// {
+// 	**val = **val * 2;
+// }
+
+// void add(int a, int b, int& result)
+// {
+// 	// result = a + b;
+// }
+
+// //void f1(const int& val)
+// //{
+// //	val = 45;	// ERROR
+// //}
+
+// void f1(const int* const val)
+// {
+// 	*val = 45;	// ERROR
+// }
+
+
+// int main()
+// {
+// 	int a{ 12 };
+// 	modify1(a);
+// 	modify2(a);
+// 	modify3(&a);
+
+// 	int* ptr = &a;
+// 	modify4(ptr);
+
+// 	modify5(&ptr);
+
+// }
+
+
+
+class User
 {
-	val = val * 2;
+	public:
+		int id;
+		std::string email;
+
+		User(int id, std::string email)
+		{
+			this->id = id;
+			this->email = email;
+		}
+		User(int id)
+			: User(id, "vasia@mail.com")
+		{}
 }
 
-static void modify2(int& val)
-{
-	val = val * 2;
-}
-
-static void modify3(int* val)
-{
-	*val = *val * 2;
-}
-static void modify4(int*& val)
-{
-	*val = *val * 2;
-}
-static void modify5(int** val)
-{
-	**val = **val * 2;
-}
-
-void add(int a, int b, int& result)
-{
-	// result = a + b;
-}
-
-//void f1(const int& val)
-//{
-//	val = 45;	// ERROR
-//}
-
-void f1(const int* const val)
-{
-	*val = 45;	// ERROR
-}
-
-
-int main()
-{
-	int a{ 12 };
-	modify1(a);
-	modify2(a);
-	modify3(&a);
-
-	int* ptr = &a;
-	modify4(ptr);
-
-	modify5(&ptr);
-
-}
