@@ -1,0 +1,1 @@
+﻿global using _04_namespaces.Core;
