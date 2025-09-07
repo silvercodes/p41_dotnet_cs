@@ -1,4 +1,4 @@
-﻿
+
 //using MathEngine.SimpleCalculator;
 
 //Calculator calc = new Calculator();
@@ -34,7 +34,7 @@
 
 
 
-// Если будет скучно
+// === Если будет скучно :-)
 // dotnet CLI
 // vim
 // Рихтер
@@ -42,3 +42,5 @@
 //          https://git-scm.com/book/ru/v2
 //          https://learngitbranching.js.org/
 
+
+Console.WriteLine();
