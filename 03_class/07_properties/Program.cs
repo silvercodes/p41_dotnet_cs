@@ -292,24 +292,25 @@
 
 
 
-//User d = new User()
-//{
+// User d = new User()
+// {
 //    Age = 34,
 //    Email = "vasia@mail.com",
-//};
+// };
 
-//class User
-//{
+// class User
+// {
 //    public required int Age { get; set; }
 //    public required string Email { get; set; }
 //    public User()
 //    { }
 
-//    public User(string email)
-//    {
-//        Email = email;
-//    }
-//}
+//     public User(string email)
+//     {
+//         Email = email;
+//         Age = 1;
+//     }
+// }
 
 
 
@@ -385,46 +386,46 @@
 // Класс должен уметь кэшировать результат вычислений
 
 
-WeatherData wd = new WeatherData();
-wd.AddTemp(15);
-wd.AddTemp(15);
-wd.AddTemp(30);
+// WeatherData wd = new WeatherData();
+// wd.AddTemp(15);
+// wd.AddTemp(15);
+// wd.AddTemp(30);
 
-Console.WriteLine(wd.Average);
-Console.WriteLine(wd.Average);
-Console.WriteLine(wd.Average);
-Console.WriteLine(wd.Average);
+// Console.WriteLine(wd.Average);
+// Console.WriteLine(wd.Average);
+// Console.WriteLine(wd.Average);
+// Console.WriteLine(wd.Average);
 
-wd.AddTemp(30);
-Console.WriteLine(wd.Average);
-Console.WriteLine(wd.Average);
+// wd.AddTemp(30);
+// Console.WriteLine(wd.Average);
+// Console.WriteLine(wd.Average);
 
-public class WeatherData
-{
-    private List<double> store = new List<double>();
-    private double average;
-    private bool isChanged = false;
+// public class WeatherData
+// {
+//     private List<double> store = new List<double>();
+//     private double average;
+//     private bool isChanged = false;
 
-    public double Average
-    {
-        get
-        {
-            if (isChanged)
-            {
-                average = store.Average();
-                Console.WriteLine("RECALC");
-                isChanged = false;
-            }
+//     public double Average
+//     {
+//         get
+//         {
+//             if (isChanged)
+//             {
+//                 average = store.Average();
+//                 Console.WriteLine("RECALC");
+//                 isChanged = false;
+//             }
 
-            return average;
-        }
-    }
+//             return average;
+//         }
+//     }
 
-    public void AddTemp(double temp)
-    {
-        store.Add(temp);
-        isChanged = true;
-    }
-}
+//     public void AddTemp(double temp)
+//     {
+//         store.Add(temp);
+//         isChanged = true;
+//     }
+// }
 
 #endregion
