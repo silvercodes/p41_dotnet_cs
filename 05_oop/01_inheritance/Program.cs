@@ -174,6 +174,138 @@
 //    }
 //}
 
+#endregion
+
+#region virtual / override
+
+//User u = new Student(101, 23);
+//u.Show();
+
+//User a = new User(102, 34);
+//a.Age = 15;
+//a.Show();
+
+//User a = new Student(102, 34);
+//a.Age = 15;
+//a.Show();
+
+//User a = new SuperStudent(102, 34);
+//a.Age = 15;
+//a.Show();
+
+
+//class User
+//{
+//    public int Id { get; set; }
+//    public virtual int Age { get; set; }
+//    public User(int id, int age)
+//    {
+//        Id = id;
+//        Age = age;
+//    }
+//    public virtual void Show()
+//    {
+//        Console.WriteLine($"id {Id}, age: {Age}");
+//    }
+//    public static void Method()
+//    { }
+//    //public virtual static void Method()           // Не имеет смысла
+//    //{}
+//}
+
+//class Student: User
+//{
+//    public override int Age 
+//    {
+//        get => base.Age;
+//        set
+//        {
+//            base.Age = value >= 18 ? value : 18;
+//        }
+//    }
+
+//    public Student(int id, int age) :
+//        base(id, age)
+//    { }
+//    public override sealed void Show()
+//    {
+//        Console.WriteLine("Student---->");
+//        base.Show();
+//    }
+//}
+
+//class SuperStudent: Student
+//{
+//    public SuperStudent(int id, int age) : 
+//        base(id, age)
+//    {}
+//    //public override void Show()                   // ERROR
+//    //{
+//    //    Console.WriteLine("SuperStudent---->");
+//    //    base.Show();
+//    //}
+//}
+
+
+
+
+//A a = new D();
+//a.Show();
+
+//B b = new D();
+//b.Show();
+
+//class A
+//{
+//    public virtual void Show() => Console.WriteLine("A Show()");
+//}
+//class B: A
+//{}
+
+//class C : B
+//{
+//    public override void Show() => Console.WriteLine("C Show()");
+//}
+//class D : C
+//{}
+//class E : D
+//{
+//    public override void Show() => Console.WriteLine("E Show()");
+//}
+
+
+
+
+
+//A a = new D();
+//a.Show();
+
+//B b = new D();
+//b.Show();
+
+C c = new E();
+c.Show();
+
+class A
+{
+    public void Show() => Console.WriteLine("A Show()");
+}
+class B : A
+{
+    public virtual void Show() => Console.WriteLine("B Show()");
+}
+
+class C : B
+{
+    public override void Show() => Console.WriteLine("C Show()");
+}
+class D : C
+{ }
+class E : D
+{
+    public override void Show() => Console.WriteLine("E Show()");
+}
 
 #endregion
+
 
