@@ -283,29 +283,90 @@
 //B b = new D();
 //b.Show();
 
-C c = new E();
-c.Show();
+//C c = new E();
+//c.Show();
 
-class A
-{
-    public void Show() => Console.WriteLine("A Show()");
-}
-class B : A
-{
-    public virtual void Show() => Console.WriteLine("B Show()");
-}
+//class A
+//{
+//    public void Show() => Console.WriteLine("A Show()");
+//}
+//class B : A
+//{
+//    public virtual void Show() => Console.WriteLine("B Show()");
+//}
 
-class C : B
-{
-    public override void Show() => Console.WriteLine("C Show()");
-}
-class D : C
-{ }
-class E : D
-{
-    public override void Show() => Console.WriteLine("E Show()");
-}
+//class C : B
+//{
+//    public override void Show() => Console.WriteLine("C Show()");
+//}
+//class D : C
+//{ }
+//class E : D
+//{
+//    public override void Show() => Console.WriteLine("E Show()");
+//}
 
 #endregion
 
+#region Hiding (скрытие)
+//Console.WriteLine(User.minAge);
+//Console.WriteLine(Admin.minAge);
 
+//Console.WriteLine(User.Pi);
+//Console.WriteLine(Admin.Pi);
+
+
+//Admin admin = new Admin(101, "vasia@mail.com");
+//admin.Email = "brus@mail.com";
+//admin.Show();
+
+//User user = new Admin(101, "vasia@mail.com");
+//user.Email = "brus@mail.com";
+//user.Show();
+
+
+//User user = new Admin(101, "vasia@mail.com");
+//if (user is Admin admin)
+//{
+//    admin.Email = "brus@mail.com";
+//    admin.Show();
+//}
+
+//class User
+//{
+//    public readonly static int minAge = 18;
+//    public const double Pi = 3.14;
+//    public int Id { get; set; }
+//    public string Email { get; set; } = "no_email";
+//    public User(int id, string email)
+//    {
+//        Id = id;
+//        Email = email;
+//    }
+//    public void Show()
+//    {
+//        Console.WriteLine($"User: {Email}");
+//    }
+//}
+
+//class Admin : User
+//{
+//    public new readonly static int minAge = 30;
+//    public new const double Pi = 3.1415;
+//    // public new int Id { get; set; }          // :-( Дублирование id в объекте Admin
+//    public new string Email
+//    {
+//        get => $"admin: {base.Email}";
+//        set => base.Email = value;
+//    }
+//    public Admin(int id, string email) 
+//        : base(id, email)
+//    {}
+//    public new void Show()
+//    {
+//        base.Show();
+//        Console.WriteLine($"Admin: {Email}");
+//    }
+//}
+
+#endregion
