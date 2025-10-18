@@ -236,21 +236,21 @@
 
 #region Inheritance
 
-class Identity
-{
-    public Identity()
-    { }
-}
+//class Identity
+//{
+//    public Identity()
+//    { }
+//}
 
-class Level
-{ }
+//class Level
+//{ }
 
-class Unit<T>
-    where T: new()
-{
-    public T Id { get; set; }
-    public Unit(T id) => Id = id;
-}
+//class Unit<T>
+//    where T: new()
+//{
+//    public T Id { get; set; }
+//    public Unit(T id) => Id = id;
+//}
 
 // 1. Обобщённый наследник с тем же типом
 //class Archer<K>: Unit<K>
