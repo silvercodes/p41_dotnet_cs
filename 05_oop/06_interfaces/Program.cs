@@ -167,41 +167,305 @@
 // a.Write();
 
 
-// ??????
+// Db db = new Db();
 
-interface IWritable
-{
-    public void Write();
-}
-interface ISaver
-{
-    public void Write();
-}
+// ((IWritable)db).Write();        // :-(
 
-class Db: IWritable, ISaver
-{
-    // === Явная реализация
-    // 1. НЕ ЯВЛЯЮТСЯ ЧЛЕНАМИ КЛАССА!!!
-    // 2. Нельзя сделать publie
-    void IWritable.Write()
-    {
-        System.Console.WriteLine("Write() from Db(IWritable)");
-    }
-    void ISaver.Write()
-    {
-        System.Console.WriteLine("Write() from Db(ISaver)");
-    }
+// if (db is IWritable wdb)
+//     wdb.Write();                // :-)))
 
-    // === Общая реализация (одна на все интерфейсы)
-    public void Write()
-    {
-        System.Console.WriteLine("Common realization");
-    }
-}
+// IWritable w = db;               // :-)
+// w.Write();
+
+// interface IWritable
+// {
+//     public void Write();
+// }
+// interface ISaver
+// {
+//     public void Write();
+// }
+
+// class Db: IWritable, ISaver
+// {
+//     // === Явная реализация
+//     // 1. НЕ ЯВЛЯЮТСЯ ЧЛЕНАМИ КЛАССА!!!
+//     // 2. Нельзя сделать publie
+//     void IWritable.Write()
+//     {
+//         System.Console.WriteLine("Write() from Db(IWritable)");
+//     }
+//     void ISaver.Write()
+//     {
+//         System.Console.WriteLine("Write() from Db(ISaver)");
+//     }
+
+//     // === Общая реализация (одна на все интерфейсы)
+//     public void Write()
+//     {
+//         System.Console.WriteLine("Common realization");
+//     }
+// }
 
 
 #endregion
 
+#region Access modificators
 
+// IRenderable a = new Mesh();
+// // a.Show();                    // ERROR
+
+// Mesh b = new Mesh();
+// b.Show();
+
+// interface IRenderable
+// {
+//     protected void Show();
+// }
+
+// class Mesh: IRenderable
+// {
+//     void IRenderable.Show()
+//     {
+//         System.Console.WriteLine("Mesh IRenderable.Show()");
+//     }
+//     public void Show()
+//     {
+//         System.Console.WriteLine("Mesh Show()");
+//     }
+// }
+
+#endregion
+
+#region Interfaces with inheritance !!!!!!!!!!!
+
+// Tree a = new Tree();
+
+// Shape b = a;
+// b.Render();     // 3
+// b.Calc();       // 4
+// b.Update();     // 2
+
+// IRenderable c = a;
+// c.Render();     // 3
+// c.Calc();       // 4
+// c.Update();     // 2
+
+
+// interface IRenderable
+// {
+//     public void Render();
+//     public void Calc();
+//     public void Update();
+// }
+
+// abstract class Shape : IRenderable
+// {
+//     public abstract void Render();
+//     public virtual void Calc() => System.Console.WriteLine("1 Shape.Calc()");     // 1
+//     public void Update() => System.Console.WriteLine("2 Shape.Update()");         // 2
+// }
+
+// class Tree: Shape
+// {
+//     public override void Render() => System.Console.WriteLine("3 Tree.Render()"); // 3
+//     public override void Calc() => System.Console.WriteLine("4 Tree.Calc()");     // 4
+//     public new void Update() => System.Console.WriteLine("5 Tree.Update()");      // 5
+// }
+
+
+
+
+
+// Unit a = new Unit();
+// a.Render();             // 2
+// Shape b = a;
+// b.Render();             // 1
+// IRenderable c = a;
+// c.Render();             // 2
+
+// interface IRenderable
+// {
+//     public void Render();
+// }
+
+// class Shape : IRenderable
+// {
+//     public void Render() => System.Console.WriteLine("1 Shape.Render()");
+// }
+// class Unit: Shape, IRenderable
+// {
+//     public new void Render() => System.Console.WriteLine("2 Unit.Render()");
+// }
+
+
+
+
+
+// Unit a = new Unit();
+// a.Render();             // 2
+
+// Shape b = a;
+// b.Render();             // 1
+
+// IRenderable c = a;
+// c.Render();             // 3
+
+// interface IRenderable
+// {
+//     public void Render();
+// }
+
+// class Shape : IRenderable
+// {
+//     public void Render() => System.Console.WriteLine("1 Shape.Render()");
+// }
+// class Unit: Shape, IRenderable
+// {
+//     public new void Render() => System.Console.WriteLine("2 Unit.Render()");
+//     void IRenderable.Render() => System.Console.WriteLine("3 Explicit IRenderable.Render() from Unit");
+// }
+
+
+
+#endregion
+
+#region Interfaces inheritance !!!!!!!!!!!!
+
+// IWritable a = new FileManager();
+// a.Write();                          // 6
+
+// IFileSaver b = new FileManager();
+// b.Write();                          // 4
+// b.Save();                           // 7
+
+
+// interface IWritable
+// {
+//     // public void Write();
+//     public void Write() => System.Console.WriteLine("1. IWritable.Write()");
+// }
+
+// interface IFileSaver : IWritable
+// {
+//     // public void Save();
+//     public void Save() => System.Console.WriteLine("2. IFileSaver.Save()");
+//     public new void Write() => System.Console.WriteLine("3. IFileSaver.Write()");
+// }
+
+// class FileManager: IFileSaver
+// {
+//     public void Write() => System.Console.WriteLine("4. FileManager.Wirte()");
+//     public void Save() => System.Console.WriteLine("5. FileManager.Write()");
+//     void IWritable.Write() => System.Console.WriteLine("6. Explicit FileManager.IWritable.Write()");
+//     void IFileSaver.Save() => System.Console.WriteLine("7. Explicit FileManager.IFileSaver.Save()");
+
+// }
+
+#endregion
+
+#region Interface as generic constraints
+
+// File file = new File("/var/log.txt");
+
+// FileManager<File> fm = new FileManager<File>();
+// fm.Save(file);
+
+// interface IWritable
+// {
+//     public void Write();
+// }
+
+// interface ISavable
+// {
+//     string? Path { get; }
+// }
+
+
+// class File : IWritable, ISavable
+// {
+//     public string? Path { get; }
+//     public File(string path) => Path = path;
+//     public void Write() => System.Console.WriteLine($"File {Path} was written");
+// }
+
+// class FileManager<T>
+//     where T: IWritable, ISavable
+// {
+//     public void Save(T data)
+//     {
+//         data.Write();
+//         Console.WriteLine(data.Path);
+//     }
+// }
+
+#endregion
+
+#region Generic interfaces
+
+// User<int> u = new User<int>(12);
+// IAuthenticator<int> a = u;
+
+// Admin b = new Admin("123456");
+// IAuthenticator<string> c = b;
+
+// Author d = new Author("546234");
+// User<string> e = d;
+// IAuthenticator<string> f = d;
+
+// interface IAuthenticator<T>
+// {
+//     public T Id { get; }
+// }
+
+// class User<K> : IAuthenticator<K>
+// {
+//     public K Id { get; }
+//     public User(K id) => Id = id;
+// }
+
+// class Admin : IAuthenticator<string>
+// {
+//     public string Id { get; }
+//     public Admin(string id) => Id = id;
+// }
+
+// class Author: User<string>
+// {
+//     public Author(string id):
+//         base(id)
+//     {}
+// }
+
+#endregion
+
+#region IComparable / IComparable<T>
+
+class User: IComparable
+{
+    public int Id { get; set; }
+    public string? Email { get; set; }
+    public int Age { get; set; }
+
+    public int CompareTo(object? obj)
+    {
+        if (obj is null)
+            throw new NullReferenceException();
+
+        if (obj is User u)
+            return Age - u.Age;
+
+        throw new ArgumentException();
+    }
+
+    public override string ToString()
+    {
+        return $"id: {Id}, email: {Email}, age: {Age}";
+    }
+}
+
+
+
+#endregion
 
 
