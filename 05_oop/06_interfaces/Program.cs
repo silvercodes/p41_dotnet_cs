@@ -441,31 +441,447 @@
 
 #region IComparable / IComparable<T>
 
-class User: IComparable
+// List<User> users = new List<User>()
+// {
+//     new User() { Id = 101, Email = "email1@mail.com", Age = 43 },
+//     new User() { Id = 102, Email = "email2@mail.com", Age = 21 },
+//     new User() { Id = 103, Email = "email3@mail.com", Age = 32 },
+//     new User() { Id = 104, Email = "email4@mail.com", Age = 20 },
+// };
+
+// users.Sort();
+// foreach (User u in users)
+// {
+//     System.Console.WriteLine(u);
+// }
+
+
+
+// class User : IComparable
+// {
+//     public int Id { get; set; }
+//     public string? Email { get; set; }
+//     public int Age { get; set; }
+
+//     public int CompareTo(object? obj)
+//     {
+//         if (obj is null)
+//             throw new NullReferenceException();
+
+//         if (obj is User u)
+//             return Age - u.Age;
+
+//         throw new ArgumentException();
+//     }
+
+//     public override string ToString()
+//     {
+//         return $"id: {Id}, email: {Email}, age: {Age}";
+//     }
+// }
+
+
+// class User : IComparable<User>
+// {
+//     public int Id { get; set; }
+//     public string? Email { get; set; }
+//     public int Age { get; set; }
+
+//     public int CompareTo(User? obj)
+//     {
+//         if (obj is null)
+//             throw new NullReferenceException();
+
+//         return Age - obj.Age;
+//     }
+
+//     public override string ToString()
+//     {
+//         return $"id: {Id}, email: {Email}, age: {Age}";
+//     }
+// }
+
+#endregion
+
+#region IComparer<T>
+
+// List<User> users = new List<User>()
+// {
+//     new User() { Id = 101, Email = "email1@mail.com", Age = 43 },
+//     new User() { Id = 102, Email = "email2@mail.com", Age = 21 },
+//     new User() { Id = 103, Email = "email3@mail.com", Age = 32 },
+//     new User() { Id = 104, Email = "email4@mail.com", Age = 20 },
+// };
+
+// users.Sort(new UserAgeComparer());
+// users.Sort(new UserIdComparer(Direction.Asc));
+// foreach (var u in users)
+// {
+//     Console.WriteLine(u);
+// }
+
+// class User
+// {
+//     public int Id { get; set; }
+//     public string? Email { get; set; }
+//     public int Age { get; set; }
+
+//     public override string ToString()
+//     {
+//         return $"id: {Id}, email: {Email}, age: {Age}";
+//     }
+// }
+
+// class UserAgeComparer : IComparer<User>
+// {
+//     public int Compare(User? x, User? y)
+//     {
+//         if (x is null || y is null)
+//             throw new NullReferenceException();
+
+//         return x.Age - y.Age;
+//     }
+// }
+
+// enum Direction
+// {
+//     Asc,
+//     Desc,
+// }
+
+// class UserIdComparer : IComparer<User>
+// {
+//     public Direction Direction { get; set; } = Direction.Asc;
+//     public UserIdComparer(Direction dir) => Direction = dir;
+//     public int Compare(User? x, User? y)
+//     {
+//         if (x is null || y is null)
+//             throw new NullReferenceException();
+
+//         return Direction == Direction.Asc ? x.Id - y.Id : y.Id - x.Id;
+//     }
+// }
+
+#endregion
+
+#region invariance (as it is) / covariance (up to types, out T) / contrvariance (down to types, in T)
+
+// ------------ обобщённый интерфейс с инвариантным универсальным параметром ----------------
+
+//MySqlManager manager = new MySqlManager();
+
+//IManager<MySqlConnection> manager_0 = manager;
+
+//IManager<MySqlConnection> manager_1 = new MySqlManager();
+
+//// IManager<Connection> manager_2 = new MySqlManager();                 // ERROR
+
+////List<IManager<Connection>> list = new List<IManager<Connection>>()    // ERROR
+////{
+////    new MySqlManager(),
+////}
+
+
+//class Connection
+//{
+//    public string? Config { get; set; }
+//    public Connection(string? config) => Config = config;
+//}
+//class MySqlConnection : Connection
+//{
+//    public MySqlConnection(string? config) : base(config)
+//    {}
+//}
+
+//interface IManager<T>
+//    where T : Connection
+//{
+//    T CreateConnection(string config);
+//}
+//class MySqlManager : IManager<MySqlConnection>
+//{
+//    public MySqlConnection CreateConnection(string config)
+//    {
+//        return new MySqlConnection(config);
+//    }
+//}
+
+
+
+
+
+// ------------ обобщённый интерфейс с КОвариантным универсальным параметром ----------------
+
+// EXAMPLE_1
+
+//MySqlManager manager_0 = new MySqlManager();
+
+//IManager<MySqlConnection> manager_1 = new MySqlManager();
+
+//IManager<Connection> manager_2 = new MySqlManager();
+//Connection conn1 = manager_2.CreateConnection("config_1 string");
+//Console.WriteLine(conn1.Config);
+
+//IManager<Connection> manager_3 = new SqlServerManager();
+//Connection conn2 = manager_3.CreateConnection("config_2 string");
+//Console.WriteLine(conn2.Config);
+
+//List<IManager<Connection>> list = new List<IManager<Connection>>()
+//{
+//    new MySqlManager(),
+//    new SqlServerManager(),
+//};
+//foreach(IManager<Connection> manager in list)
+//    Console.WriteLine(manager.CreateConnection("config........"));
+
+//class Connection
+//{
+//    public string? Config { get; set; }
+//    public Connection(string? config) => Config = config;
+//}
+//class MySqlConnection : Connection
+//{
+//    public MySqlConnection(string? config) : base(config)
+//    { }
+//}
+//class SqlServerConnection : Connection
+//{
+//    public SqlServerConnection(string? config) : base(config)
+//    { }
+//}
+
+//interface IManager<out T>
+//    where T : Connection
+//{
+//    T CreateConnection(string config);
+//}
+//class MySqlManager : IManager<MySqlConnection>
+//{
+//    public MySqlConnection CreateConnection(string config)
+//    {
+//        return new MySqlConnection(config);
+//    }
+//}
+//class SqlServerManager : IManager<SqlServerConnection>
+//{
+//    public SqlServerConnection CreateConnection(string config)
+//    {
+//        return new SqlServerConnection(config);
+//    }
+//}
+
+
+
+// EXAMPLE_2
+
+//IUnitBuilder builder = new WarriorBuilder();
+//List<IUnitBuilder> builders = new List<IUnitBuilder>()
+//{
+//    new WarriorBuilder(),
+//    new ArcherBuilder(),
+//};
+
+//class Unit
+//{
+//    public string Title { get; set; }
+//    public int Hp { get; set; }
+//    public Unit(string title, int hp)
+//    {
+//        Title = title;
+//        Hp = hp;
+//    }
+//}
+//class Archer: Unit
+//{
+//    public Archer(string title, int hp) : base(title, hp)
+//    {}
+//}
+//class Assasin: Archer
+//{
+//    public Assasin(string title, int hp) : base(title, hp)
+//    { }
+//}
+
+//class Warrior: Unit
+//{
+//    public Warrior(string title, int hp) : base(title, hp)
+//    {}
+//}
+
+//interface IUnitBuilder
+//{
+//    public Unit BuildUnit(string title, int hp);
+//}
+//class ArcherBuilder : IUnitBuilder
+//{
+//    public Unit BuildUnit(string title, int hp)
+//    {
+//        return new Archer(title, hp);
+//    }
+//}
+//class WarriorBuilder : IUnitBuilder
+//{
+//    public Unit BuildUnit(string title, int hp)
+//    {
+//        return new Warrior(title, hp);
+//    }
+//}
+
+
+
+
+
+
+//IUnitBuilder<Archer> a = new ArcherBuilder();
+//IUnitBuilder<Assasin> b = new AssasinBuilder();
+//IUnitBuilder<Warrior> c = new WarriorBuilder();
+
+//List<IUnitBuilder<Unit>> builders = new List<IUnitBuilder<Unit>>()
+//{
+//    new ArcherBuilder(),
+//    new AssasinBuilder(),
+//    new WarriorBuilder(),
+//};
+
+//class Unit
+//{
+//    public string Title { get; set; }
+//    public int Hp { get; set; }
+//    public Unit(string title, int hp)
+//    {
+//        Title = title;
+//        Hp = hp;
+//    }
+//}
+//class Archer : Unit
+//{
+//    public Archer(string title, int hp) : base(title, hp)
+//    { }
+//}
+//class Assasin : Archer
+//{
+//    public Assasin(string title, int hp) : base(title, hp)
+//    { }
+//}
+//class Warrior : Unit
+//{
+//    public Warrior(string title, int hp) : base(title, hp)
+//    { }
+//}
+
+//interface IUnitBuilder<out T>
+//{
+//    public T BuildUnit(string title, int hp);
+//}
+//class ArcherBuilder : IUnitBuilder<Archer>
+//{
+//    public Archer BuildUnit(string title, int hp)
+//    {
+//        return new Archer(title, hp);
+//    }
+//}
+//class AssasinBuilder : IUnitBuilder<Assasin>
+//{
+//    public Assasin BuildUnit(string title, int hp)
+//    {
+//        return new Assasin(title, hp);
+//    }
+//}
+//class WarriorBuilder : IUnitBuilder<Warrior>
+//{
+//    public Warrior BuildUnit(string title, int hp)
+//    {
+//        return new Warrior(title, hp);
+//    }
+//}
+
+
+
+
+// ------------ обобщённый интерфейс с КОНТРвариантным универсальным параметром ----------------
+
+
+//object m0 = new MySqlManager();
+
+//MySqlManager m1 = new MySqlManager();
+
+//IManager<Connection> m2 = new MySqlManager();
+
+//IManager<MySqlConnection> m3 = new MySqlManager();
+//m3.SetConnection(new MySqlConnection("config string"));
+//// m3.SetConnection(new Connection("config string"));           ERROR
+
+//IManager<SqlServerConnection> m4 = new SqlServerManager();
+//m4.SetConnection(new SqlServerConnection("config string 2"));
+//m4.SetConnection(new DefaultSqlServerConnection("config string 2"));
+
+
+
+//class Connection
+//{
+//    public string? Config { get; set; }
+//    public Connection(string? config) => Config = config;
+//}
+//class MySqlConnection : Connection
+//{
+//    public MySqlConnection(string? config) : base(config)
+//    { }
+//}
+//class SqlServerConnection : Connection
+//{
+//    public SqlServerConnection(string? config) : base(config)
+//    { }
+//}
+//class DefaultSqlServerConnection : SqlServerConnection
+//{
+//    public DefaultSqlServerConnection(string? config) : base(config)
+//    {}
+//}
+
+//interface IManager<in T>
+//    where T : Connection
+//{
+//    public void SetConnection(T conn);
+//}
+//class MySqlManager : IManager<Connection>
+//{
+//    public void SetConnection(Connection conn)
+//    {
+//        Console.WriteLine($"MySqlManager: {conn.Config}");
+//    }
+//}
+//class SqlServerManager : IManager<Connection>
+//{
+//    public void SetConnection(Connection conn)
+//    {
+//        Console.WriteLine($"SqlServerManager: {conn.Config}");
+//    }
+//}
+
+
+
+
+
+// ------------ обобщённый интерфейс с разными универсальными параметроми ----------------
+
+interface ILogger<T, out K, in V>
 {
-    public int Id { get; set; }
-    public string? Email { get; set; }
-    public int Age { get; set; }
 
-    public int CompareTo(object? obj)
-    {
-        if (obj is null)
-            throw new NullReferenceException();
+}
+class A { }
 
-        if (obj is User u)
-            return Age - u.Age;
+class B : A { }
+class C : B { }
 
-        throw new ArgumentException();
-    }
+class Logger: ILogger<int, C, A>
+{
 
-    public override string ToString()
-    {
-        return $"id: {Id}, email: {Email}, age: {Age}";
-    }
 }
 
 
-
 #endregion
+
+
+
 
 
