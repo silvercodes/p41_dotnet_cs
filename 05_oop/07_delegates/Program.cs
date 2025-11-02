@@ -455,63 +455,357 @@
 
 
 
-List<User> users = new List<User>()
-{
-    new User(110, "vasia@mail.com", 34),
-    new User(45, "petya@mail.com", 24),
-    new User(112, "dima@mail.com", 15),
-    new User(165, "kolya@mail.com", 21),
-    new User(110, "chack_norris@mail.com", 23),
-};
+// List<User> users = new List<User>()
+// {
+//     new User(110, "vasia@mail.com", 34),
+//     new User(45, "petya@mail.com", 24),
+//     new User(112, "dima@mail.com", 15),
+//     new User(165, "kolya@mail.com", 21),
+//     new User(110, "chack_norris@mail.com", 23),
+// };
 
-List<User> Find(List<User> users, Predicate predicate)
-{
-    List<User> result = new List<User>();
+// List<User> Find(List<User> users, Predicate predicate)
+// {
+//     List<User> result = new List<User>();
 
-    foreach (User u in users)
-        if (predicate(u))
-            result.Add(u);
+//     foreach (User u in users)
+//         if (predicate(u))
+//             result.Add(u);
 
-    return result;
-}
+//     return result;
+// }
 
-// List<User> res1 = Find(users, u => u.Id == 110);
-// res1.ForEach(u => Console.WriteLine(u));
+// // List<User> res1 = Find(users, u => u.Id == 110);
+// // res1.ForEach(u => Console.WriteLine(u));
 
-// List<User> res2 = Find(users, u => u.Age < 18);
-// res2.ForEach(u => Console.WriteLine(u));
+// // List<User> res2 = Find(users, u => u.Age < 18);
+// // res2.ForEach(u => Console.WriteLine(u));
 
-// List<User> res3 = Find(users, u => u.Email.StartsWith('k'));
-// res3.ForEach(u => Console.WriteLine(u));
+// // List<User> res3 = Find(users, u => u.Email.StartsWith('k'));
+// // res3.ForEach(u => Console.WriteLine(u));
 
-List<User> res4 = Find(users, u =>
-{
-    if (u.Email is string e)
-        return e.StartsWith('k');
+// List<User> res4 = Find(users, u =>
+// {
+//     if (u.Email is string e)
+//         return e.StartsWith('k');
 
-    return false;
-});
-res4.ForEach(u => Console.WriteLine(u));
+//     return false;
+// });
+// res4.ForEach(u => Console.WriteLine(u));
 
-class User
-{
-    public int Id { get; set; }
-    public string? Email { get; set; }
-    public int Age { get; set; }
-    public User(int id, string? email, int age)
-    {
-        Id = id;
-        Email = email;
-        Age = age;
-    }
-    public override string ToString()
-    {
-        return $"id: {Id}, email: {Email}, age: {Age}";
-    }
-}
+// class User
+// {
+//     public int Id { get; set; }
+//     public string? Email { get; set; }
+//     public int Age { get; set; }
+//     public User(int id, string? email, int age)
+//     {
+//         Id = id;
+//         Email = email;
+//         Age = age;
+//     }
+//     public override string ToString()
+//     {
+//         return $"id: {Id}, email: {Email}, age: {Age}";
+//     }
+// }
 
-delegate bool Predicate(User user);
+// delegate bool Predicate(User user);
 #endregion
+
+#region Generic delegates
+
+// TASK
+// Написать метод для поиска пользователей в коллекции по разным условиям (критериям)
+// id == 110
+// age < 18
+// email starts with 'k'
+
+
+// List<User> users = new List<User>()
+// {
+//     new User(110, "vasia@mail.com", 34),
+//     new User(45, "petya@mail.com", 24),
+//     new User(112, "dima@mail.com", 15),
+//     new User(165, "kolya@mail.com", 21),
+//     new User(110, "chack_norris@mail.com", 23),
+// };
+
+// IEnumerable<T> Find<T>(IEnumerable<T> list, Predicate<T> predicate)
+// {
+//     List<T> result = new List<T>();
+
+//     foreach (T item in list)
+//         if (predicate(item))
+//             result.Add(item);
+
+//     return result;
+// }
+
+// // List<User> res1 = Find(users, u => u.Id == 110);
+// // res1.ForEach(u => Console.WriteLine(u));
+
+// // List<User> res2 = Find(users, u => u.Age < 18);
+// // res2.ForEach(u => Console.WriteLine(u));
+
+// // List<User> res3 = Find(users, u => u.Email.StartsWith('k'));
+// // res3.ForEach(u => Console.WriteLine(u));
+
+// IEnumerable<User> res4 = Find<User>(users, u =>
+// {
+//     if (u.Email is string e)
+//         return e.StartsWith('k');
+
+//     return false;
+// });
+
+// foreach (User u in res4)
+// {
+//     Console.WriteLine(u);
+// }
+
+// class User
+// {
+//     public int Id { get; set; }
+//     public string? Email { get; set; }
+//     public int Age { get; set; }
+//     public User(int id, string? email, int age)
+//     {
+//         Id = id;
+//         Email = email;
+//         Age = age;
+//     }
+//     public override string ToString()
+//     {
+//         return $"id: {Id}, email: {Email}, age: {Age}";
+//     }
+// }
+
+// delegate bool Predicate<T>(T item);
+
+
+#endregion
+
+#region Embedded delegates
+
+// 1. ========= Action / Action<T...> =========
+
+// delegate void Action();
+
+// delegate void Action<T>(T arg1);
+// delegate void Action<T1, T2>(T1 arg1, T2 arg2);
+// delegate void Action<T1, T2... T16>(T1 arg1, T2 arg2..., T16 arg16);
+
+
+// void RenderMessage(string message, Action<string> handler)
+// {
+//     handler(message);
+// }
+
+// void CastToString(int a, int b, Action<int, int> handler)
+// {
+//     handler(a, b);
+// }
+
+// RenderMessage("Hello Vasia", m => System.Console.WriteLine(m));
+// CastToString(12, 45, (a, b) => System.Console.WriteLine($"{a} --- {b}"));
+
+
+// 2. =========== Predicate<T>==============
+
+// delegate bool Predicate<T>(T item);
+
+// int[] arr = [3, 6, 4, 5, 7, 8, 9, 3, 3, 3, 3, 3];
+
+// int Sum(int[] arr, Predicate<int> predicate)
+// {
+//     int sum = 0;
+
+//     foreach (int num in arr)
+//     {
+//         if (predicate(num))
+//             sum += num;
+//     }
+
+//     return sum;
+// }
+
+// System.Console.WriteLine(Sum(arr, n => n % 2 == 0));
+
+
+// 3. ========== Func<T1, T2.... T16, TResult> ========
+// delegate TResult Func<TResult>();
+
+// Func<int> f1 = () => 5;
+
+// Func<int, string> f2 = n => $"val: {n}";
+
+// Func<int, int, string> f3 = (a, b) => $"{a} +++ {b}";
+
+// Func<int, bool> f4 = n => true;             // LIKE A Predicate delegate
+
+#endregion
+
+#region Practice_6
+
+// Func<int, int, int> GetOperation(Operation op) => op switch
+// {
+//     Operation.Sum => (a, b) => a + b,
+//     Operation.Mult => (a, b) => a * b,
+//     Operation.Div => (a, b) => a / b,
+
+//     _ => throw new NotImplementedException()
+// };
+
+// Func<int, int, int> res = GetOperation(Operation.Sum);
+// Console.WriteLine(res?.Invoke(3, 4));
+
+// enum Operation
+// {
+//     Sum,
+//     Mult,
+//     Div
+// }
+
+#endregion
+
+#region Covariance / contrvariance
+
+// ===== ковариантность
+
+// PgConnection ConnectToPg(string config)
+// {
+//     return new PgConnection(config);
+// }
+
+// ConnectionHandler handler = ConnectToPg;                // ковариантность
+// Connection conn = handler("config");
+// conn.Connect();
+
+// PgConnection? conn2 = handler("config_2") as PgConnection;
+// conn2?.Connect();
+
+// delegate Connection ConnectionHandler(string config);
+
+// ===== контрвариантность
+
+// void RunCOnnection(Connection conn)
+// {
+//     conn.Connect();
+// }
+
+// ConnectionHandler handler = RunCOnnection;                  // контрвариантность
+// handler(new PgConnection("config"));
+
+// delegate void ConnectionHandler(PgConnection conn);
+
+
+
+// ===== ковариантность в обобщённых делегатах
+
+// // -- invariance
+// ConnectionHandler<MySqlConnection> mysqlHandler = (string config) => new MySqlConnection(config);
+// // -- covariance
+// ConnectionHandler<Connection> handler = new ConnectionHandler<MySqlConnection>((string config) => new MySqlConnection(config));
+// Connection conn = handler("config");
+// conn.Connect();
+
+// delegate T ConnectionHandler<out T>(string config);
+
+
+
+// ===== контрвариантность в обобщённых делегатах
+
+// -- invariance
+// ConnectionHandler<Connection> handler = (Connection conn) => conn.Connect();
+// -- contrvariance
+// ConnectionHandler<MySqlConnection> handler = new ConnectionHandler<Connection>((Connection conn) => conn.Connect());
+// handler(new MySqlConnection("config"));
+
+// // handler(new Connection("config"));              // ERROR
+// // handler(new MySqlConnection("config"));
+// // handler(new PgConnection("config"));            // ERROR     
+
+
+// delegate void ConnectionHandler<in T>(T conn);
+
+// // ----------------------------------
+
+
+// class Connection
+// {
+//     public string Config { get; set; }
+//     public Connection(string config) => Config = config;
+//     public virtual void Connect()
+//     {
+//         Console.WriteLine("Connection.Connect()");
+//     }
+// }
+// class MySqlConnection : Connection
+// {
+//     public MySqlConnection(string config) : base(config)
+//     { }
+//     public override void Connect()
+//     {
+//         System.Console.WriteLine("MySqlConnection.Connect()");
+//     }
+// }
+// class PgConnection : Connection
+// {
+//     public PgConnection(string config) : base(config)
+//     { }
+//     public override void Connect()
+//     {
+//         Console.WriteLine("PgConnection.Connect()");
+//     }
+// }
+
+#endregion
+
+#region Events
+
+
+Server server = new Server();
+// server.AddClientConnectedHandler(m => System.Console.WriteLine($"handler: {m}"));
+server.ClientConnected += m => System.Console.WriteLine($"handler: {m}");
+
+
+server.EmulateConnection();
+
+class Server
+{
+    // private Action<string>? clientConnected;
+    // public void AddClientConnectedHandler(Action<string> handler)
+    // {
+    //     clientConnected += handler;
+    // }
+
+    public event Action<string>? ClientConnected;
+
+    public void EmulateConnection()
+    {
+        //
+        //
+        ClientConnected?.Invoke("Client connected");
+    }
+
+    public void EmulateDisconnection()
+    {
+        //
+        //
+
+    }
+}
+
+
+
+
+
+
+
+
+#endregion
+
 
 
 
